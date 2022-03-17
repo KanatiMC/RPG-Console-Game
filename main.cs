@@ -27,8 +27,6 @@ class Program {
         Console.WriteLine("Syntax Error: Invalid Character");
       }
     }
-    
-    
     Console.WriteLine("A Guild Has Offered To Take You On A Quest! You Shall Go With Him At Once...");
     Console.WriteLine("You Head To The Caves And Discover A Goat! Do You Wish To Kill The Goat? (y/n)");
     if (Console.ReadLine().Contains("y")){
@@ -39,7 +37,6 @@ class Program {
     else
     {
       Console.WriteLine("You Decided Not To Kill The Goat. The Dungeon Master Then Looks At You And Sighs.");
-      
       Console.WriteLine("He Then Says \"You Don't Have The Balls To Kill A Goat For Dinner? This Is Going To Be A Long Journey\" ");
     } 
     Console.WriteLine("You And The Guild Wander Further Into The Cave...");
@@ -141,10 +138,9 @@ class Program {
         Console.WriteLine("You Decided Not To Use Your Health Pot.");
         PotionManager.addPotion(1, false);
       }
-      Program.constantReading(999);
+      Program.constantReading(int.MaxValue);
     }
   }
-
   public static void constantReading(int amount)
   {
     for (int i = 0; i <= amount; i++)

@@ -10,7 +10,6 @@ class PotionManager{
       PotionManager.healthPot = PotionManager.healthPot - 1;
       Console.WriteLine("One Health Potion Has Been Used.               "+PotionManager.healthPot.ToString()+" Remaining");
     }
-    
   }
   public static void addPotion(int potionNum, bool silentAdd){
     if (potionNum == 1 && !silentAdd)
