@@ -138,8 +138,22 @@ class Program {
         Console.WriteLine("You Decided Not To Use Your Health Pot.");
         PotionManager.addPotion(1, false);
       }
+      Console.WriteLine("\n\n");
+      //Console.WriteLine("Your Guild Breaks The Door Down, And You Follow In After Your Guild.");
+      Console.ForegroundColor = ConsoleColor.DarkMagenta;
+        Console.WriteLine(" /$$$$$$$$ /$$                       /$$$$$$$$                 /$$");
+        Console.WriteLine("|__  $$__/| $$                      | $$_____/                | $$");
+        Console.WriteLine("   | $$   | $$$$$$$   /$$$$$$       | $$       /$$$$$$$   /$$$$$$$");
+        Console.WriteLine("   | $$   | $$__  $$ /$$__  $$      | $$$$$   | $$__  $$ /$$__  $$");
+        Console.WriteLine("   | $$   | $$  "+"\u005c"+" $$| $$$$$$$$      | $$__/   | $$  "+"\u005c"+" $$| $$  | $$");
+        Console.WriteLine("   | $$   | $$  | $$| $$_____/      | $$      | $$  | $$| $$  | $$");
+        Console.WriteLine("   | $$   | $$  | $$|  $$$$$$$      | $$$$$$$$| $$  | $$|  $$$$$$$");
+        Console.WriteLine("   |__/   |__/  |__/ "+"\u005c"+"_______/      |________/|__/  |__/ "+"\u005c"+"_______/");
+      Console.ForegroundColor = ConsoleColor.White;
+      Console.WriteLine("Still Making The Story. Won't Be Done For A Long While.");
       Program.constantReading(int.MaxValue);
     }
+    
   }
   public static void constantReading(int amount)
   {
