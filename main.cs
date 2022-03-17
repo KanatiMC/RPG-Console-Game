@@ -1,8 +1,11 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
+using System.IO;
 
 class Program {
-  public static void Main (string[] args) {
+  public static async void Main (string[] args) {
+    Console.BackgroundColor = ConsoleColor.Black;
     bool redo = true;
     while(redo){
     Console.WriteLine ("Enter Player Name:");
@@ -29,19 +32,20 @@ class Program {
       Console.WriteLine("You Decided Not To Kill The Goat. The Dungeon Master Then Looks At You And Sighs.");
       
       Console.WriteLine("He Then Says \"You Don't Have The Balls To Kill A Goat For Dinner? This Is Going To Be A Long Journey\" ");
-    }
+    } 
     Console.WriteLine("You And The Guild Wander Further Into The Cave...");
     Console.WriteLine("You Start Seeing Things In The Shadows, And Eventually See A Giant Spider!");
-    Console.WriteLine("A Guild Member Yells \""+Program.playerName+"Watch Out! That Spider Is Poisonous! \"");
+    Console.WriteLine("A Guild Member Yells \""+Program.playerName+" Watch Out! That Spider Is Poisonous! \"");
     Console.WriteLine("Would You Like To Swing At The Spider? (y/n)");
-    
     if (Console.ReadLine().Contains("y"))
     {
       int dice1 = Int32.Parse(RandomNum(1));
       Console.WriteLine("You Roll A Dice, Your Number Is: "+dice1);
-      if (dice1 < 3)
+      if (dice1 <= 3)
       {
         Console.WriteLine("You Swing And Miss!");
+        Console.WriteLine("The Spider Attacks You And You Lose 6 Health Points!");
+        Console.WriteLine("You Have: "+Player.instance.health.ToString() + " Health Points Left");
       }
       if (dice1 < 6 && dice1 > 3)
       {
@@ -58,8 +62,11 @@ class Program {
     }
     else {
       Console.WriteLine("The Spider Swings At You! It Attacks Your Arm And Fractures It.");
+      Console.WriteLine("You've Lost 5 Health Points!");
+      Player.instance.health = Player.instance.health - 5;
+      Console.WriteLine("You Have: "+Player.instance.health.ToString() + "Health Points Left");
     }
-    
+    Console.ReadLine();
   }
   private static Random random = new Random();
   public static string RandomNum(int length)
