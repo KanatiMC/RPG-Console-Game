@@ -1,7 +1,7 @@
 using System;
 
-class Player{
+class PlayerManager{
   public static int health = 100;
-  public static Player instance;
+  public static PlayerManager instance;
   
 }

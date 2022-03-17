@@ -1,6 +1,6 @@
 using System;
 
-class Goblins {
+class GoblinManager {
   public int gobHealth = 100;
   
 }

@@ -1,26 +1,31 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.IO;
 
 class Program {
   public static void Main (string[] args) {
     Console.BackgroundColor = ConsoleColor.Black;
     Console.ForegroundColor = ConsoleColor.White;
     Console.Title = "Console RPG Game";
-    bool redo = true;
-    while(redo){
+    while(Program.usernameYN){
     Console.WriteLine ("Enter Player Name:");
     Program.playerName = Console.ReadLine();
     Console.WriteLine("Selected Username: "+Program.playerName);
     Console.WriteLine("Do You Wish To Use This Username? y/n");
-    if (Console.ReadLine().Contains("n"))
-    {
-      redo = true;
+    Program.string1 = Console.ReadLine();
+      if (!Program.string1.Contains("n") || !Program.string1.Contains("y")){
+      Console.WriteLine("Syntax Error: Wrong Character.");
+      Program.usernameYN = true;
     }
       else{
-        redo = false;
+    if (Program.string1.Contains("n"))
+    {
+      Program.usernameYN = true;
+    }
+      else{
+        Program.usernameYN = false;
       }
+    }
     }
     Console.WriteLine("A Guild Has Offered To Take You On A Quest! You Shall Go With Him At Once...");
     Console.WriteLine("You Head To The Caves And Discover A Goat! Do You Wish To Kill The Goat? (y/n)");
@@ -47,7 +52,7 @@ class Program {
       {
         Console.WriteLine("You Swing And Miss!");
         Console.WriteLine("The Spider Attacks You And You Lose 6 Health Points!");
-        Console.WriteLine("You Have: "+Player.health.ToString() + " Health Points Left");
+        Console.WriteLine("You Have: "+PlayerManager.health.ToString() + " Health Points Left");
       }
       if (dice1 < 6 && dice1 > 3)
       {
@@ -65,8 +70,8 @@ class Program {
     else {
       Console.WriteLine("The Spider Swings At You! It Attacks Your Arm And Fractures It.");
       Console.WriteLine("You've Lost 5 Health Points!");
-      Player.health = Player.health - 5;
-      Console.WriteLine("You Have: "+Player.health.ToString() + "Health Points Left");
+      PlayerManager.health = PlayerManager.health - 5;
+      Console.WriteLine("You Have: "+PlayerManager.health.ToString() + "Health Points Left");
     }
     Console.WriteLine("\n\n");
     Console.WriteLine("As You And Your Guild Wander Further Into The Cave, You Light A Torch And Notice That There's Writing On The Walls");
@@ -92,8 +97,8 @@ class Program {
       {
         Console.WriteLine("You Swing And Miss!");
         Console.WriteLine("The Group Of Goblins Attacks You And You Lose 12 Health Points!");
-        Player.health = Player.health - 12;
-        Console.WriteLine("You Have: "+Player.health.ToString() + " Health Points Left");
+        PlayerManager.health = PlayerManager.health - 12;
+        Console.WriteLine("You Have: "+PlayerManager.health.ToString() + " Health Points Left");
       }
       if (dice1 < 6 && dice1 > 2)
       {
@@ -105,8 +110,8 @@ class Program {
         {
           Console.WriteLine("You Dont Lift Up Your Shield In Time,  And And The Goblin Damages You!");
           Console.WriteLine("The Goblin Attacks You And You Lose 10 Health Points!");
-          Player.health = Player.health - 10;
-          Console.WriteLine("You Have: "+Player.health.ToString() + " Health Points Left");
+          PlayerManager.health = PlayerManager.health - 10;
+          Console.WriteLine("You Have: "+PlayerManager.health.ToString() + " Health Points Left");
         }
         if (dice2 >= 5)
         {
@@ -121,9 +126,23 @@ class Program {
         Shop.money = Shop.money + 15;
         Console.WriteLine("Amount Of Coins: "+Shop.money.ToString());
       }
-        
+      Console.WriteLine("\n\n");
+      Console.WriteLine("One Of Your Guild Members Notices A Door, And Calls For The Group To Come Check It Out.");
+      Console.WriteLine("When Checking It Out, You Notice There's A Potion On The Ground. A Health Potion!");
+      Console.WriteLine("Do You Wish To Use This Potion? Not Using It Will Put It In Your Inventory. (y/n)");
+      if (Console.ReadLine().Contains("y"))
+      {
+        PotionManager.addPotion(1, true);
+        PotionManager.usePotion(1);
+      }
+      else {
+        Console.WriteLine("You Decided Not To Use Your Health Pot.");
+        PotionManager.addPotion(1, false);
+      }
       Console.ReadLine();
     }
   }
+  public static bool usernameYN = true;
+  public static string string1;
   public static string playerName;
 }
