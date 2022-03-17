@@ -153,7 +153,6 @@ class Program {
       Console.WriteLine("Still Making The Story. Won't Be Done For A Long While.");
       Program.constantReading(int.MaxValue);
     }
-    
   }
   public static void constantReading(int amount)
   {
