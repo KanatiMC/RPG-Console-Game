@@ -4,8 +4,10 @@ using System.Threading.Tasks;
 using System.IO;
 
 class Program {
-  public static async void Main (string[] args) {
+  public static void Main (string[] args) {
     Console.BackgroundColor = ConsoleColor.Black;
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.Title = "Console RPG Game";
     bool redo = true;
     while(redo){
     Console.WriteLine ("Enter Player Name:");
@@ -39,13 +41,13 @@ class Program {
     Console.WriteLine("Would You Like To Swing At The Spider? (y/n)");
     if (Console.ReadLine().Contains("y"))
     {
-      int dice1 = Int32.Parse(RandomNum(1));
+      int dice1 = MyUtils.RandomIntNum(1);
       Console.WriteLine("You Roll A Dice, Your Number Is: "+dice1);
       if (dice1 <= 3)
       {
         Console.WriteLine("You Swing And Miss!");
         Console.WriteLine("The Spider Attacks You And You Lose 6 Health Points!");
-        Console.WriteLine("You Have: "+Player.instance.health.ToString() + " Health Points Left");
+        Console.WriteLine("You Have: "+Player.health.ToString() + " Health Points Left");
       }
       if (dice1 < 6 && dice1 > 3)
       {
@@ -63,16 +65,65 @@ class Program {
     else {
       Console.WriteLine("The Spider Swings At You! It Attacks Your Arm And Fractures It.");
       Console.WriteLine("You've Lost 5 Health Points!");
-      Player.instance.health = Player.instance.health - 5;
-      Console.WriteLine("You Have: "+Player.instance.health.ToString() + "Health Points Left");
+      Player.health = Player.health - 5;
+      Console.WriteLine("You Have: "+Player.health.ToString() + "Health Points Left");
     }
-    Console.ReadLine();
-  }
-  private static Random random = new Random();
-  public static string RandomNum(int length)
-  {
-    const string chars = "1234567890";
-    return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+    Console.WriteLine("\n\n");
+    Console.WriteLine("As You And Your Guild Wander Further Into The Cave, You Light A Torch And Notice That There's Writing On The Walls");
+    Console.WriteLine("You Begin To Translate The Scripture On The Walls, And It Reads \"Death Is Among Us All, Beware! Goblins Ahead!\"");
+    Console.WriteLine("Suddenly, Goblins Appear! You Decide To Take Them On, But You're Surrounded! Do You Wish To Attack? (y/n)");
+    if (Console.ReadLine().Contains("n")){
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("The Goblins Attack You And Kill You!");
+        Console.WriteLine(" /$$$$$$$$ /$$                       /$$$$$$$$                 /$$");
+        Console.WriteLine("|__  $$__/| $$                      | $$_____/                | $$");
+        Console.WriteLine("   | $$   | $$$$$$$   /$$$$$$       | $$       /$$$$$$$   /$$$$$$$");
+        Console.WriteLine("   | $$   | $$__  $$ /$$__  $$      | $$$$$   | $$__  $$ /$$__  $$");
+        Console.WriteLine("   | $$   | $$  "+"\u005c"+" $$| $$$$$$$$      | $$__/   | $$  "+"\u005c"+" $$| $$  | $$");
+        Console.WriteLine("   | $$   | $$  | $$| $$_____/      | $$      | $$  | $$| $$  | $$");
+        Console.WriteLine("   | $$   | $$  | $$|  $$$$$$$      | $$$$$$$$| $$  | $$|  $$$$$$$");
+        Console.WriteLine("   |__/   |__/  |__/ "+"\u005c"+"_______/      |________/|__/  |__/ "+"\u005c"+"_______/");
+       Console.ReadLine();
+      }
+    else{
+      int dice1 = MyUtils.RandomIntNum(1);
+      Console.WriteLine("You Roll A Dice, Your Number Is: "+dice1);
+      if (dice1 <= 2)
+      {
+        Console.WriteLine("You Swing And Miss!");
+        Console.WriteLine("The Group Of Goblins Attacks You And You Lose 12 Health Points!");
+        Player.health = Player.health - 12;
+        Console.WriteLine("You Have: "+Player.health.ToString() + " Health Points Left");
+      }
+      if (dice1 < 6 && dice1 > 2)
+      {
+        Console.WriteLine("You Swing And Hit It!");
+        Console.WriteLine("The Goblins Split And You Now Face One. It Attacks! You Lift Up Your Shield And Begin To Defend!\n\n");
+        int dice2 = MyUtils.RandomIntNum(1);
+        Console.WriteLine("You Roll A Dice, Your Number Is: "+dice2);
+        if (dice2 <= 4)
+        {
+          Console.WriteLine("You Dont Lift Up Your Shield In Time,  And And The Goblin Damages You!");
+          Console.WriteLine("The Goblin Attacks You And You Lose 10 Health Points!");
+          Player.health = Player.health - 10;
+          Console.WriteLine("You Have: "+Player.health.ToString() + " Health Points Left");
+        }
+        if (dice2 >= 5)
+        {
+          Console.WriteLine("You Lift Up Your Shield And Block! You Then Swing At The Goblin And Take Of It's Head.");
+          Console.WriteLine("You've Been Awarded 15 Coins.");
+        }
+      }
+      if (dice1 >= 6)
+      {
+        Console.WriteLine("You Swing And Slash, Killing Most Of The Goblins. The Others Flee In Fear!");
+        Console.WriteLine("You Check Out The Satchels Of The Goblins And Find 15 Coins.");
+        Shop.money = Shop.money + 15;
+        Console.WriteLine("Amount Of Coins: "+Shop.money.ToString());
+      }
+        
+      Console.ReadLine();
+    }
   }
   public static string playerName;
 }
