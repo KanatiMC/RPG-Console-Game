@@ -13,20 +13,22 @@ class Program {
     Console.WriteLine("Selected Username: "+Program.playerName);
     Console.WriteLine("Do You Wish To Use This Username? y/n");
     Program.string1 = Console.ReadLine();
-      if (!Program.string1.Contains("n") || !Program.string1.Contains("y")){
-      Console.WriteLine("Syntax Error: Wrong Character.");
-      Program.usernameYN = true;
-    }
-      else{
-    if (Program.string1.Contains("n"))
+    bool syntaxError = true;
+    if (Program.string1.Contains("y"))
     {
-      Program.usernameYN = true;
+      Program.usernameYN = false;
+      syntaxError = false;
     }
-      else{
-        Program.usernameYN = false;
+    if  (Program.string1.Contains("n")){
+        Program.usernameYN = true;
+        syntaxError = false;
+    }
+     if (syntaxError){
+        Console.WriteLine("Syntax Error: Invalid Character");
       }
     }
-    }
+    
+    
     Console.WriteLine("A Guild Has Offered To Take You On A Quest! You Shall Go With Him At Once...");
     Console.WriteLine("You Head To The Caves And Discover A Goat! Do You Wish To Kill The Goat? (y/n)");
     if (Console.ReadLine().Contains("y")){
@@ -139,6 +141,14 @@ class Program {
         Console.WriteLine("You Decided Not To Use Your Health Pot.");
         PotionManager.addPotion(1, false);
       }
+      Program.constantReading(999);
+    }
+  }
+
+  public static void constantReading(int amount)
+  {
+    for (int i = 0; i <= amount; i++)
+    {
       Console.ReadLine();
     }
   }
